@@ -7,18 +7,13 @@ const url = require("url");
 const rateLimit = require("express-rate-limit")
 const moment = require('moment')
 const axios = require("axios")
-const fileBytes = require('file-bytes');
-const base64 = require('tinybase64');
-var bytes = require('bytes');
 const router = require('express').Router();
 var os = require('os-utils');
 var clc = require("cli-color");
 const now = moment().format("YYYY, MM, DD, HH:mm")
-const config = require('/home/runner/WelcomeBrownStructuresss/config.json')
+const config = require('./config.json')
 const Discord = require("discord.js");
-const INTENTS = Object.entries(Discord.Intents.FLAGS).filter(([K]) => !["GUILD_PRESENCES", "GUILD_MEMBERS"].includes(K)).reduce((t, [, V]) => t | V, 0)
-const client = new Discord.Client({intents: INTENTS})  
-client.login(process.env.token)
+
 const {
 	JsonDatabase
 } = require("wio.db");
