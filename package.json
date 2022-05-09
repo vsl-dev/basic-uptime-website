@@ -1,0 +1,36 @@
+{
+  "name": "vsl uptime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "@discordjs/rest": "^0.4.1",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "bytes": "^3.1.2",
+    "cli-color": "^2.0.2",
+    "croxydb": "^0.0.7",
+    "discord-api-types": "^0.32.1",
+    "discord.js": "^13.6.0",
+    "ejs": "^3.1.7",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.4.0",
+    "express-session": "^1.17.2",
+    "file-bytes": "^2.0.3",
+    "moment": "^2.29.3",
+    "node-fetch": "^2.6.1",
+    "os-utils": "^0.0.14",
+    "passport": "^0.5.2",
+    "passport-discord": "^0.1.4",
+    "quick.db": "^7.1.3",
+    "request": "^2.88.2",
+    "tinybase64": "^0.0.3",
+    "wio.db": "^4.0.22"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

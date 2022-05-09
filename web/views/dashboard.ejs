@@ -1,0 +1,42 @@
+<%- include('parts/meta') %>
+<title>VSL Dashboard</title>
+<body>
+<%- include('parts/navbar') %>
+<%- include('parts/loading') %>
+
+<center>
+	<div class="uptime__card">
+		<div class="uptime__card__head">
+			<h2>Add Link</h2>
+		</div>
+		<div class="uptime__card__body">
+		<form method="POST" action="/uptime/link/add">
+		<input name="link" placeholder="Enter your link for uptime..." max="120" min="5" type="url" required>
+		<br>
+		<button class="uptime__card__button" type="submit">Submit</button>
+		</form>
+		</div>
+		
+	</div>
+
+	<div class="uptime__card">
+		<div class="uptime__card__body">
+			<h2>Your Links</h2>
+		</div>
+		<div class="uptime__card__body">
+		<% if((vsldev <= 0) == false) { %>
+		<center>
+	<% vsldev.forEach((x) => { %>
+	<form action="/uptime/link/delete/<%= x.link_id %>" method="POST"><p><%= x.link %> <button id="deleteBTN" type="submit" style="cursor: pointer; color: red; padding: 0 20px 0 20px; background-color: transparent; border: none; font-size: 20px;" title="Delete <%= x.id %> link." class="fa-solid fa-trash-can"></button></p></form>
+	<% }) %>
+
+		<% } else { %>
+		0 links
+		<% } %>
+		</div>
+		
+	</div>
+</center>
+
+<%- include('parts/footer') %>
+</body>

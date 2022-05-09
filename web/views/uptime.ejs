@@ -1,0 +1,32 @@
+<%- include('parts/meta') %>
+<title>VSL Uptime</title>
+<body>
+<%- include('parts/navbar') %>
+<%- include('parts/loading') %>
+
+<center>
+<div class="uptime__card">
+<div class="uptime__card__head">
+			<h2>Uptime</h2>
+		<h4>Uptime your links free! Unlimited and fast uptime service.</h4>
+		</div>
+</div>
+</center>
+<br><br><br><br>
+<% if(user) { %>
+	
+<center>
+	<a class="login-btn" href="/dashboard">Go to dashboard</a>
+</center>
+	
+<% } else { %>
+
+<center>
+
+<a class="login-btn" href="/login">Please Login For This Page.</a>
+
+</center>
+
+<% } %>
+
+</body>
