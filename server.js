@@ -7,9 +7,6 @@ const url = require("url");
 const rateLimit = require("express-rate-limit")
 const moment = require('moment')
 const axios = require("axios")
-const fileBytes = require('file-bytes');
-const base64 = require('tinybase64');
-var bytes = require('bytes');
 const app = express();
 var os = require('os-utils');
 var clc = require("cli-color");
@@ -46,9 +43,9 @@ const { Strategy } = require("passport-discord");
  });
 
 let strategy = new Strategy({
-  clientID: "909007474273685504",
-  clientSecret: "7XBrAb4g8S7sbe3mBj78BHnukHZMwjaO",
-  callbackURL: "https://uptime.vsldev.tk/callback",
+  clientID: "BOT_ID",
+  clientSecret: "YOUR_SECRET",
+  callbackURL: "https://example.com/callback",
   scope: ["identify"]
 }, (accesToken, refreshToken, profile, done) => {
   process.nextTick( () => done(null, profile))
@@ -96,20 +93,6 @@ app.get("/logout", (req, res) => {
       });
 });
 
-// Discord bot
-
-const Discord = require("discord.js");
-const { MessageEmbed } = require("discord.js");
-const INTENTS = Object.entries(Discord.Intents.FLAGS).filter(([K]) => !["GUILD_PRESENCES", "GUILD_MEMBERS"].includes(K)).reduce((t, [, V]) => t | V, 0)
-const client = new Discord.Client({intents: INTENTS})  
-const {MessageActionRow, MessageButton } = require("discord.js");
-client.commands = new Discord.Collection();
-const fetch = ("node-fetch");
-const fs = require("fs");
-require("./utils/loader.js")(client) 
-
-client.login(process.env.token);
-
 // Pages
 
 app.get('/', (req, res) => {
@@ -126,11 +109,20 @@ app.get('/uptime', (req, res) => {
 	})
 })
 
+app.get('/', (req, res) => {
+	if(!req.user) return res.redirect('/login')
+	const vsl = Object.values(db.fetch('links'))
+	const vsldev = vsl.filter(x => x.link_owner == req.user.id)
+	res.render('dashboard', {
+		user: req.user,
+		db, config, vsldev
+	})
+})
+
 app.get('/discord', (req, res) => {
 	res.redirect(config.discord_server)
 })
 
-app.use('/dashboard', require("./routes/dashboard.js")) // Dashboard systems
 app.use('/uptime', require("./routes/uptimer.js")) // Uptime system
 
 app.listen(8080, () => {
