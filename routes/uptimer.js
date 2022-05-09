@@ -21,7 +21,7 @@ const db = new JsonDatabase({
 	databasePath: "./db/database.json"
 });
 
-// Post methods
+// Uptimer
 
 router.post('/link/add', (req, res) => {
 	if(!req.user) return res.json({"error": "Invalid discord id."})
@@ -39,19 +39,6 @@ router.post('/link/add', (req, res) => {
 	}
 	db.set(`links.${id}`, Data)
 	res.redirect('/dashboard?success=true')
-
-// 	try {
-// 	const embed = new Discord.MessageEmbed() 
-//      .setTitle("New Link Added")
-// 	 .setDescription(`\`Owner\`: ${req.user.username}#${req.user.discriminator} | \`${req.user.id}\`
-// \n \`Uptimed Link\`: ${req.body.link}`)
-//      .setColor("RED")
-//      .setTimestamp()
-// 	  client.channels.fetch("972838607696044062").send(embed) 
-// } catch (err) {
-// 	// console.log(clc.red("Error in log bot cant send message to the channel!"))
-// 		console.log(err)
-// 	}
 }
 })
 
@@ -69,7 +56,6 @@ router.post('/link/delete/:ID', (req, res) => {
 	}
 })
 
-const fetch = require("node-fetch");
 setInterval(() => {
   var links = db.get("links");
   if (!links) return;
@@ -79,14 +65,6 @@ setInterval(() => {
 	  const request = require('request');
 request(link, function (error, response, body) {
 	console.log('Pinged - ' + link)
-});
-  //   try {
-  //     fetch(link);
-		// console.log('pinged - ' + link)
-  //   } catch (err) {
-  //     console.log(clc.red(`${link} There was a problem pinging your link.`));
-  //   }
-  });
 }, 50000);
 
 // Functions
