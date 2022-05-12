@@ -109,7 +109,7 @@ app.get('/uptime', (req, res) => {
 	})
 })
 
-app.get('/', (req, res) => {
+app.get('/dashboard', (req, res) => {
 	if(!req.user) return res.redirect('/login')
 	const vsl = Object.values(db.fetch('links'))
 	const vsldev = vsl.filter(x => x.link_owner == req.user.id)
