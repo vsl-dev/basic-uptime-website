@@ -65,6 +65,7 @@ setInterval(() => {
 	  const request = require('request');
 request(link, function (error, response, body) {
 	console.log('Pinged - ' + link)
+	})})
 }, 50000);
 
 // Functions
