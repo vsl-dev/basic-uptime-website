@@ -11,6 +11,7 @@ const app = express();
 var os = require('os-utils');
 var clc = require("cli-color");
 const config = require('./config.json')
+const now = moment().format("YYYY, MM, DD, HH:mm")
 const port = 8080
 const {
 	JsonDatabase
